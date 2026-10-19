@@ -1,5 +1,5 @@
 ### Copernicus CDS API Key Setup
-This 9 step setup guide was based on the open source github from Ørpheus AI. 
+This 9 step setup guide was based on the open source github from Ørpheus AI.
 
 > [!IMPORTANT]
 > To download ERA5 data via the Climate Data Store (CDS) API, you must provide a Copernicus CDS personal access token (API key). Follow the steps below to create an account, retrieve your key, and accept the dataset license.
@@ -14,12 +14,18 @@ This 9 step setup guide was based on the open source github from Ørpheus AI.
 8. You should be redirected back to the [CDS API documentation page](https://cds.climate.copernicus.eu/how-to-api). Scroll down to the section titled **1. Setup the CDS API personal access token**. You will see a code block formatted like this:
 
    ```yaml
-   url: [https://cds.climate.copernicus.eu/api](https://cds.climate.copernicus.eu/api)
+   url: https://cds.climate.copernicus.eu/api
    key: YOUR_API_KEY_THAT_SHOULD_BE_COPIED
    ```
 
-   Copy the token string following `key:` and add it to your configuration (for example, in your `.env` file under `CDS_API_KEY` or in your `~/.cdsapirc` file).
+   Copy only the token string following `key:` into the project `.env` file (see `.env.example`):
 
-9. **Accept the dataset license:** Go to the [ERA5 dataset download page](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=download#manage-licences), scroll to the **Terms of use** section, and accept the license. API requests for ERA5 data will be rejected until these terms are accepted on your account.
+   ```env
+   ERA5_CDS_API_KEY=YOUR_API_KEY_THAT_SHOULD_BE_COPIED
+   ```
+
+   `client.py` hardcodes the CDS API URL (`https://cds.climate.copernicus.eu/api`) and reads the key from `.env`. No `.cdsapirc` file is required.
+
+9. **Accept the dataset license (required final step):** Go to the [ERA5 pressure levels licence page](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=download#manage-licences), scroll to **Terms of use**, and accept the licence for your account. The API key will not work for downloads until this is done.
 
 Once configured, the dataloader will have access to download ERA5 data.
