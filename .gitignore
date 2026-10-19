@@ -1,0 +1,6 @@
+*.env
+*venv/
+**/tmp.ipynb
+*.grib
+*.nc
+data/era5/cache/
