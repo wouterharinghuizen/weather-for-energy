@@ -21,8 +21,8 @@ class Era5DataLoader:
 
 if __name__ == "__main__":
     data_format = "netcdf"
-    variable = "geopotential" # random variable
-    date = "2024-03-01" # random test date
+    variable = "2m_temperature"  # Download 2m temperature
+    date = "2024-03-01"  # Example date
 
     extension = "nc" if data_format == "netcdf" else "grib"
     target = REPO_ROOT / "data" / "era5" / "cache" / variable / f"era5_{date}.{extension}"
@@ -35,12 +35,11 @@ if __name__ == "__main__":
         "month": ["03"],
         "day": ["01"],
         "time": ["13:00"],
-        "pressure_level": ["550"],
         "data_format": data_format,
     }
     if data_format == "netcdf":
         request["download_format"] = "unarchived"
 
     loader = Era5DataLoader()
-    print(f"Downloading ({data_format}) → {target}")
-    loader.retrieve("reanalysis-era5-pressure-levels", request, target)
+    print(f"Downloading {variable} ({data_format}) → {target}")
+    loader.retrieve("reanalysis-era5-single-levels", request, target)
