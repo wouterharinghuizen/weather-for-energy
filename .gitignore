@@ -2,3 +2,5 @@
 *venv/
 *.ipynb
 *.grib
+*.nc
+data/era5/cache/
