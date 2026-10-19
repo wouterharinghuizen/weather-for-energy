@@ -1,0 +1,2 @@
+cdsapi>=0.7.7
+python-dotenv>=1.0.0
